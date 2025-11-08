@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Danco - Demo (Blue Theme)</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* ===== Theme colors ===== */
+        :root {
+            --primary: #0b3d91; /* dark blue */
+            --primary-700: #0a3577;
+            --accent: #ffffff;
+            --muted: #6c757d;
+            --card-bg: #ffffff;
+            --section-pad: 80px;
+            --container-wide: 1200px;
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            font-family: "Inter", "Helvetica Neue", Helvetica, Arial;
+            color: #222;
+            background: #f8f9fb;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== Header ===== */
+        .topbar {
+            background: var(--primary);
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--accent) !important;
+            letter-spacing: 0.2px;
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        .contact-btn {
+            background: #fff;
+            color: var(--primary);
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(11, 61, 145, 0.12);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 26px rgba(11, 61, 145, 0.14);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            min-height: 420px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(11, 61, 145, 0.82) 0%, rgba(11, 61, 145, 0.4) 60%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .hero .hero-content {
+            margin-left: 50px;
+            max-width: 700px;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero p.lead {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        /* ===== Sections ===== */
+        section {
+            padding: var(--section-pad) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-title h2 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* ===== Categories block ===== */
+        .category-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 8px 28px rgba(19, 43, 77, 0.06);
+            transition: transform .28s ease, box-shadow .28s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 45px rgba(11, 61, 145, 0.09);
+        }
+
+        .category-card:hover img{
+            border: 5px solid var(--primary);
+            transform: scale(1.1);
+        }
+
+        .category-card img {
+            width: 135px;
+            height: 135px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            border-radius: 50%;
+        }
+
+        /* ===== News cards ===== */
+        .news-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform .22s ease, box-shadow .22s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 40px rgba(11, 61, 145, 0.06);
+        }
+
+
+
+        .product-highlight .thumb {
+            width: 160px;
+            height: 100px;
+            object-fit: cover;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-highlight .thumb:hover,
+        .product-highlight .thumb.active {
+            border-color: #0b3d91;
+            transform: scale(1.05);
+        }
+
+        .product-highlight .main-image {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-highlight .main-image img {
+            border-radius: 10px;
+            width: 100%;
+            transition: opacity 0.4s ease-in-out;
+            opacity: 1;
+        }
+
+        .product-highlight .main-image img.fade-out {
+            opacity: 0;
+        }
+
+        .product-highlight .main-image img.fade-in {
+            opacity: 1;
+        }
+
+
+        /* ===== Feature icons ===== */
+        .feature-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 60px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(11, 61, 145, 0.06);
+            margin: 0 auto 12px;
+            transition: transform .2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon i{
+            font-size: 52px;
+        }
+
+        @media (min-width: 1024px) {
+            .feature-icon:before {
+                opacity: 0.3;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: #1346af;
+                background: var(--primary);
+                border-radius: 50%;
+                top: 0;
+                left: 0;
+                -webkit-transform: rotate(-45deg) translateY(100%);
+                transform: rotate(-45deg) translateY(100%);
+                -webkit-transition: all .5s;
+                transition: all .5s;
+            }
+
+            .feature-icon:hover:before {
+                -webkit-transform: rotate(0) translateY(0);
+                transform: rotate(0) translateY(0)
+            }
+            .feature-icon i{
+                color: var(--primary);
+            }
+            .feature-icon:hover .feature-icon i{
+                fill: #fff !important;
+                color: #fff !important;
+            }
+        }
+
+        a.btn-xemthem-line {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        a.btn-xemthem-line::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        a.btn-xemthem-line:hover {
+            color: var(--primary);
+        }
+
+        a.btn-xemthem-line:hover::after {
+            width: 100%;
+        }
+
+        a.btn-xemthem-line i {
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        a.btn-xemthem-line:hover i {
+            transform: translateX(4px);
+        }
+
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.06);
+        }
+
+        /* ===== Product bands ===== */
+        .product-band {
+            display: flex;
+            gap: 18px;
+            align-items: stretch;
+            margin-bottom: 24px;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 24px rgba(11, 61, 145, 0.04);
+            flex: 1;
+            display: flex;
+            gap: 16px;
+        }
+
+        .product-card img {
+            width: 160px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* ===== About tiles ===== */
+        .about-tile {
+            background: #fff;
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            transition: transform .18s ease;
+        }
+
+        .about-tile h6{
+            font-size: 20px;
+        }
+
+        .about-tile:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(11, 61, 145, 0.06);
+        }
+
+        /* ===== Video block ===== */
+        .video-wrap {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 */
+        }
+
+        .video-wrap iframe, .video-wrap video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ===== Footer ===== */
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            outline: none;
+            background: linear-gradient(135deg, #0b3d91, #1e63c3);
+            color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #1e63c3, #0b3d91);
+        }
+
+        #backToTop i {
+            font-size: 18px;
+            line-height: 45px;
+        }
+
+        .footer {
+            background-color: #fdfaf8;
+            color: #222;
+            font-size: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer h5 {
+            color: #0b3d91;
+            font-size: 16px;
+        }
+
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 6px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0b3d91;
+        }
+
+        .footer-form .form-control {
+            border-radius: 30px 0 0 30px;
+            border: 1px solid #ccc;
+            padding-left: 15px;
+        }
+
+        .footer-form .btn {
+            border-radius: 0 30px 30px 0;
+            background-color: #0b3d91;
+            border: none;
+        }
+
+        .footer-form .btn:hover {
+            background-color: #082d6e;
+        }
+
+        .footer-bottom {
+            background-color: #e9e9e9;
+            font-size: 14px;
+        }
+
+        .footer-social a {
+            color: #555;
+            margin: 0 8px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #0b3d91;
+        }
+
+
+        footer img {
+            max-width: 100px;
+        }
+
+        .ring-button {
+            position: fixed;
+            z-index: 99
+        }
+
+        .ring-button--left {
+            left: 10px;
+            bottom: 45px
+        }
+
+        @media (min-width: 768px) {
+            .ring-button--left .ring-button__text {
+                padding:5px 15px 5px 50px
+            }
+        }
+
+        @media (min-width: 768px) {
+            .ring-button--left .ring-button__icon {
+                left:0
+            }
+        }
+
+        .ring-button--right {
+            right: 10px;
+            bottom: 60px
+        }
+
+        @media (min-width: 768px) {
+            .ring-button--right .ring-button__text {
+                padding:5px 50px 5px 15px
+            }
+        }
+
+        @media (min-width: 768px) {
+            .ring-button--right .ring-button__icon {
+                right:0
+            }
+        }
+
+        .ring-button__button {
+            position: relative;
+            background: #8f8f8f;
+            border-radius: 50px;
+            margin-top: 15px
+        }
+
+        .ring-button__button:hover {
+            cursor: pointer
+        }
+
+        .ring-button__icon {
+            width: 35px;
+            height: 35px;
+            padding: 5px;
+            border-radius: 50%;
+            background: #1346af;
+            background: var(--primary)
+        }
+
+        @media (min-width: 768px) {
+            .ring-button__icon {
+                width:45px;
+                height: 45px;
+                padding: 10px;
+                position: absolute;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%)
+            }
+        }
+
+        .ring-button__icon svg {
+            width: 25px;
+            height: 25px;
+            fill: #fff;
+            -webkit-animation: phonering-anim 1s ease-in-out infinite;
+            animation: phonering-anim 1s ease-in-out infinite
+        }
+
+        .ring-button__text {
+            display: none
+        }
+
+        @media (min-width: 768px) {
+            .ring-button__text {
+
+                background: #8f8f8f;
+                border-radius: 50px;
+                color: #fff;
+                text-transform: uppercase
+            }
+        }
+
+        @-webkit-keyframes phonering-anim {
+            0% {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            10% {
+                -webkit-transform: rotate(-25deg);
+                transform: rotate(-25deg)
+            }
+
+            20% {
+                -webkit-transform: rotate(25deg);
+                transform: rotate(25deg)
+            }
+
+            30% {
+                -webkit-transform: rotate(-25deg);
+                transform: rotate(-25deg)
+            }
+
+            40% {
+                -webkit-transform: rotate(25deg);
+                transform: rotate(25deg)
+            }
+
+            50% {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            to {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+        }
+
+        @keyframes phonering-anim {
+            0% {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            10% {
+                -webkit-transform: rotate(-25deg);
+                transform: rotate(-25deg)
+            }
+
+            20% {
+                -webkit-transform: rotate(25deg);
+                transform: rotate(25deg)
+            }
+
+            30% {
+                -webkit-transform: rotate(-25deg);
+                transform: rotate(-25deg)
+            }
+
+            40% {
+                -webkit-transform: rotate(25deg);
+                transform: rotate(25deg)
+            }
+
+            50% {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            to {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+        }
+
+        .ring-button__button-zalo .ring-button__icon {
+            background: #008ff3
+        }
+
+        .ring-button__button-zalo .ring-button__icon path {
+            fill: #fff;
+
+        }
+
+        .ring-button__button-facebook .ring-button__icon {
+            background: #1877f2
+        }
+
+        .ring-button__button-phone{
+            top: -100px;
+        }
+
+        .ring-button__button-facebook{
+            top: -50px;
+        }
+        .ring-button__button-contact .ring-button__icon,.ring-button__button-phone .ring-button__icon {
+            background: #1346af;
+            background: var(--primary)
+        }
+
+        .ring-button__button-contact .ring-button__icon svg,.ring-button__button-phone .ring-button__icon svg {
+            fill: #fff;
+
+            stroke: #1346af;
+
+        }
+
+        /* ===== Utilities & animations ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: all .8s cubic-bezier(.2, .9, .2, 1);
+        }
+
+        .in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-outline-primary-custom {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-overlay {
+                padding: 24px;
+            }
+
+            .product-band {
+                flex-direction: column;
+            }
+
+            .hero .hero-content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Topbar / Navbar -->
+<div class="topbar py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div><small>Niềm tin thượng hiệu Danco</small></div>
+        <div class="d-none d-md-block"><small>Hotline: <strong>1900 1234</strong> &nbsp; | &nbsp; Email:
+            info@danco.vn</small></div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background:var(--primary);">
+    <div class="container">
+        <a class="navbar-brand" href="#"><span style="opacity:.9;color:rgba(255,255,255,.85)">
+            <img src="https://danco.vn/wp-content/uploads/2021/04/cropped-LOGO-DANCO-website.png" alt="anh">
+        </span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="#nganh-hang">Ngành hàng</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tin-tuc">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="#san-pham">Sản phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="#ve-chung-toi">Về chúng tôi</a></li>
+                <li class="nav-item ms-3">
+                    <button class="contact-btn" id="openContact">Liên hệ ngay</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO carousel -->
+<header class="hero">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+        <div class="carousel-inner">
+            <div class="carousel-item active"
+                 style="background-image:url('https://images.unsplash.com/photo-1490111718993-d98654ce6cf7?auto=format&fit=crop&w=1800&q=60')">
+                <div class="hero-overlay">
+                    <div class="container">
+                        <div class="hero-content">
+                            <h1>BST ANDES – Gạch cao cấp cho không gian sống</h1>
+                            <p class="lead">Chất lượng châu Âu, thiết kế tinh tế — mang tới vẻ sang trọng cho mọi công
+                                trình.</p>
+                            <a href="#san-pham" class="btn btn-light btn-lg">Xem bộ sưu tập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item"
+                 style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1800&q=60')">
+                <div class="hero-overlay">
+                    <div class="container">
+                        <div class="hero-content">
+                            <h1>Ngói IRIS – Bền, đẹp, chống thấm</h1>
+                            <p class="lead">Giải pháp hoàn hảo cho mái nhà Việt — chất lượng và thẩm mỹ cao.</p>
+                            <a href="#san-pham" class="btn btn-outline-light btn-lg">Tìm hiểu thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</header>
+
+<!-- NGÀNH HÀNG -->
+<section id="nganh-hang">
+    <div class="container">
+        <div class="section-title">
+            <h2>Ngành hàng</h2>
+            <p>Danh mục sản phẩm chính của chúng tôi</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-3 col-sm-6 fade-in">
+                <div class="category-card feature-item text-center">
+                    <img src="https://danco.vn/wp-content/uploads/2024/12/gach-catalan-website-768x768.jpg" alt="">
+                    <h6 class="mt-2">Gạch Catalan</h6>
+                    <small class="text-muted d-block mt-1">Gạch ốp lát thương hiệu</small>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 fade-in">
+                <div class="category-card feature-item">
+                    <img src="https://danco.vn/wp-content/uploads/2024/12/gach-xmart-website-768x768.jpg" alt="">
+                    <h6 class="mt-2">Gạch XSmart</h6>
+                    <small class="text-muted d-block mt-1">Giải pháp công nghệ</small>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 fade-in">
+                <div class="category-card feature-item">
+                    <img src="	https://danco.vn/wp-content/uploads/2024/12/ngoi-iris-website-768x768.jpg" alt="">
+                    <h6 class="mt-2">Ngói IRIS</h6>
+                    <small class="text-muted d-block mt-1">Ngói chất lượng cao</small>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 fade-in">
+                <div class="category-card feature-item">
+                    <img src="https://danco.vn/wp-content/uploads/2024/12/keo-dan-gach-website-768x768.jpg" alt="">
+                    <h6 class="mt-2">Keo dán gạch DANKO</h6>
+                    <small class="text-muted d-block mt-1">Vật liệu - thi công</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIN TỨC -->
+<section id="tin-tuc" style="background:transparent;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Tin tức Danco</h2>
+            <p>Cập nhật mới nhất từ công ty</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4 fade-in">
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=60"
+                         class="w-100" alt="">
+                    <div class="p-3">
+                        <h5>Đại tiệc cuối năm - Điểm vàng, Quà sang</h5>
+                        <p class="text-muted small mb-2">Sự kiện tri ân khách hàng với nhiều chương trình hấp dẫn.</p>
+                        <a class="text-primary fw-bold btn-xemthem-line" href="#">Xem thêm <i class="fa fa-arrow-right ms-1"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-md-4 fade-in">
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=60"
+                         class="w-100" alt="">
+                    <div class="p-3">
+                        <h5>Hệ thống phân phối Danco tham dự triển</h5>
+                        <p class="text-muted small mb-2">Mở rộng quan hệ hợp tác kinh doanh toàn quốc.</p>
+                        <a class="text-primary fw-bold btn-xemthem-line" href="#">Xem thêm <i class="fa fa-arrow-right ms-1"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-md-4 fade-in">
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=60"
+                         class="w-100" alt="">
+                    <div class="p-3">
+                        <h5>Khuyến mãi Mùa Hè 2025</h5>
+                        <p class="text-muted small mb-2">Mua 2 tặng 1 cho mẫu gạch chọn lọc — số lượng có hạn.</p>
+                        <a class="text-primary fw-bold btn-xemthem-line" href="#">Xem thêm <i class="fa fa-arrow-right ms-1"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature icons -->
+<section>
+    <div class="container">
+        <div class="row gy-4 justify-content-center">
+            <div class="col-6 col-md-2 text-center feature-item fade-in">
+                <div class="feature-icon"><i class="fa-solid fa-box-open fa-2x"></i></div>
+                <div class="fw-bold">Thử mẫu gạch</div>
+            </div>
+            <div class="col-6 col-md-2 text-center feature-item fade-in">
+                <div class="feature-icon"><i class="fa-solid fa-arrows-rotate fa-2x"></i>
+                </div>
+                <div class="fw-bold">Phối cảnh 360°</div>
+            </div>
+            <div class="col-6 col-md-2 text-center feature-item fade-in">
+                <div class="feature-icon"><i class="fa-solid fa-certificate fa-2x"></i>
+                </div>
+                <div class="fw-bold">Chứng chỉ chất lượng</div>
+            </div>
+            <div class="col-6 col-md-2 text-center feature-item fade-in">
+                <div class="feature-icon"><i class="fa-solid fa-building fa-2x"></i></div>
+                <div class="fw-bold">Dự án</div>
+            </div>
+            <div class="col-6 col-md-2 text-center feature-item fade-in">
+                <div class="feature-icon"><i class="fa-solid fa-image fa-2x"></i></div>
+                <div class="fw-bold">Thư viện ảnh</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS / BANDS -->
+<section id="san-pham">
+    <div class="container">
+        <div class="section-title">
+            <h2>Sản phẩm nổi bật</h2>
+            <p>Những dòng sản phẩm được ưa chuộng</p>
+        </div>
+
+        <section class="product-highlight py-5">
+            <div class="container">
+                <!-- Sản phẩm 1 -->
+                <div class="row align-items-center mb-5">
+                    <div class="col-md-6">
+                        <div class="main-image position-relative">
+                            <img src="https://picsum.photos/700/400?random=1" class="img-fluid rounded shadow main-img" alt="">
+                        </div>
+                        <div class="thumbs mt-3 d-flex gap-3 flex-wrap">
+                            <img src="https://picsum.photos/250/150?random=2" class="thumb active">
+                            <img src="https://picsum.photos/250/150?random=3" class="thumb">
+                            <img src="https://picsum.photos/250/150?random=4" class="thumb">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-white bg-primary p-5 rounded shadow-sm">
+                        <h4 class="fw-bold text-uppercase mb-3">Gạch Ốp Lát Ceramic</h4>
+                        <p>
+                            Gạch ốp lát Ceramic là loại gạch có kích thước đa dạng làm từ vật liệu ceramic (gốm)
+                            dùng để lát hoặc ốp tường. Với quy trình sản xuất nghiêm ngặt và mẫu mã phong phú,
+                            sản phẩm mang lại vẻ đẹp bền vững cho không gian sống.
+                        </p>
+                        <a href="#" class="btn btn-outline-light mt-3 px-4 py-2">Xem thêm</a>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 2 -->
+                <div class="row align-items-center flex-md-row-reverse">
+                    <div class="col-md-6">
+                        <div class="main-image position-relative">
+                            <img src="https://picsum.photos/700/400?random=5" class="img-fluid rounded shadow main-img" alt="">
+                        </div>
+                        <div class="thumbs mt-3 d-flex gap-3 flex-wrap">
+                            <img src="https://picsum.photos/250/150?random=6" class="thumb active">
+                            <img src="https://picsum.photos/250/150?random=7" class="thumb">
+                            <img src="https://picsum.photos/250/150?random=8" class="thumb">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-white p-5 rounded shadow-sm" style="background-color:#0b3d91;">
+                        <h4 class="fw-bold text-uppercase mb-3">Gạch Ốp Lát Porcelain</h4>
+                        <p>
+                            Gạch Porcelain (gạch bán sứ) có độ bền cao, khả năng chịu lực và chống thấm tốt,
+                            được ứng dụng rộng rãi trong nhà ở và công trình lớn, mang lại vẻ sang trọng, hiện đại.
+                        </p>
+                        <a href="#" class="btn btn-outline-light mt-3 px-4 py-2">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</section>
+
+<!-- ABOUT / VỀ CHÚNG TÔI -->
+<section id="ve-chung-toi" style="background:linear-gradient(180deg,#f8f9fb,#ffffff)">
+    <div class="container">
+        <div class="section-title">
+            <h2>Về chúng tôi</h2>
+            <p>Thông tin công ty & hệ thống phân phối</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4 fade-in">
+                <div class="about-tile p-3">
+                    <img src="https://danco.vn/wp-content/uploads/2021/03/a3.jpg"
+                         class="img-fluid rounded mb-3" alt="">
+                    <h6>Về chúng tôi</h6>
+                    <p class="small text-muted">Giới thiệu tóm tắt về sứ mệnh, giá trị thương hiệu và kinh nghiệm
+                        ngành.</p>
+                    <a href="#" class="text-primary btn-xemthem-line">Xem thêm</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 fade-in">
+                <div class="about-tile p-3 text-center">
+                    <img src="	https://danco.vn/wp-content/uploads/2021/03/a3.jpg"
+                         class="img-fluid rounded mb-3" alt="">
+                    <h6>Sơ đồ tổ chức</h6>
+                    <p class="small text-muted">Cấu trúc doanh nghiệp, bộ phận & liên hệ quan trọng.</p>
+                    <a href="#" class="text-primary btn-xemthem-line">Xem thêm</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 fade-in">
+                <div class="about-tile p-3 text-center">
+                    <img src="	https://danco.vn/wp-content/uploads/2021/03/a3.jpg"
+                         class="img-fluid rounded mb-3" alt="">
+                    <h6>Hệ thống phân phối</h6>
+                    <p class="small text-muted">Mạng lưới đại lý & cách thức hợp tác kinh doanh.</p>
+                    <a href="#" class="text-primary btn-xemthem-line">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO -->
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Video Clip</h2>
+            <p>Giới thiệu thương hiệu</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10 fade-in">
+                <div class="video-wrap">
+                    <!-- Example youtube iframe (replace with your video) -->
+                    <iframe id="youtube-6858" frameborder="0" allowfullscreen=""
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="Player for Quy trình sản xuất gạch khổ lớn 100x100cm tại Catalan" width="640"
+                            height="360"
+                            src="https://www.youtube.com/embed/a10xii2YlDs?autoplay=0&amp;controls=0&amp;disablekb=1&amp;playsinline=1&amp;cc_load_policy=0&amp;cc_lang_pref=auto&amp;widget_referrer=https%3A%2F%2Fdanco.vn%2F&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;customControls=true&amp;noCookie=false&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fdanco.vn&amp;widgetid=1&amp;forigin=https%3A%2F%2Fdanco.vn%2F&amp;aoriginsup=1&amp;vf=1"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer bg-light text-dark pt-5">
+    <div class="container pb-4">
+        <div class="row">
+            <!-- Cột 1 -->
+            <div class="col-md-4 mb-4">
+                <img src="https://danco.vn/wp-content/uploads/2021/04/cropped-LOGO-DANCO-website.png" alt="Danco Logo" class="mb-3">
+                <p>
+                    DANCO Group là đơn vị thương mại của nhà máy gạch ốp lát cao cấp Catalan,
+                    thương hiệu gạch ốp lát cao cấp hàng đầu tại Việt Nam.
+                </p>
+                <p><strong>Trụ sở:</strong> Lô CN7 Cụm CN vừa và nhỏ Từ Liêm, phường Minh Khai, Quận Bắc Từ Liêm, Hà Nội</p>
+                <p><strong>Đường dây nóng:</strong> 0912 699 919</p>
+            </div>
+
+            <!-- Cột 2 -->
+            <div class="col-md-2 mb-4">
+                <h5 class="fw-bold mb-3">VỀ CHÚNG TÔI</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Hệ thống phân phối</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3 -->
+            <div class="col-md-3 mb-4">
+                <h5 class="fw-bold mb-3">HỖ TRỢ</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Chứng chỉ chất lượng</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4 -->
+            <div class="col-md-3 mb-4">
+                <h5 class="fw-bold mb-3">ĐĂNG KÝ</h5>
+                <p>Đăng ký nhận thông báo cho các khuyến mãi mới nhất của chúng tôi!</p>
+                <form class="footer-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Nhập Email">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom py-3 text-center text-secondary">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="mb-2 mb-md-0">Copyright © by <a href="https://www.danco.vn" class="text-decoration-none text-primary">www.danco.vn</a></p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-zalo"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Lên đầu trang">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+</footer>
+
+<div class="ring-button ring-button--left">
+    <a href="tel:0912699919">
+        <div class="ring-button__button ring-button__button-phone">
+            <div class="ring-button__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
+                </svg>
+            </div>
+            <div class="ring-button__text">
+                Hotline: 0912699919      </div>
+        </div>
+    </a>
+    <a href="https://www.facebook.com/danco.vn" target="_blank">
+        <div class="ring-button__button ring-button__button-facebook">
+            <div class="ring-button__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 10h-2v2h2v6h3v-6h1.82l.18-2h-2v-.833c0-.478.096-.667.558-.667h1.442v-2.5h-2.404c-1.798 0-2.596.792-2.596 2.308v1.692z"></path></svg>
+            </div>
+            <div class="ring-button__text">
+                Facebook        </div>
+        </div>
+    </a>
+    <a href="0912699919" target="_blank">
+        <div class="ring-button__button ring-button__button-zalo">
+            <div class="ring-button__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.66 12.14a.692.692 0 00-.56-.3c-.51-.03-.87.37-.87 1.04a1.092 1.092 0 00.2.57.773.773 0 001.24-.01 1.162 1.162 0 00-.01-1.3zm0 0a.692.692 0 00-.56-.3c-.51-.03-.87.37-.87 1.04a1.092 1.092 0 00.2.57.773.773 0 001.24-.01 1.162 1.162 0 00-.01-1.3zM12 0a12 12 0 1012 12A11.997 11.997 0 0012 0zM8.5 14.72c-.76.01-1.52 0-2.28 0-.22 0-.45.01-.66 0-.28-.02-.55-.07-.68-.36a.693.693 0 01.14-.76c.73-.93 1.46-1.86 2.19-2.78a1.934 1.934 0 00.13-.17c-.04-.08-.12-.04-.17-.04-.51-.01-1.02 0-1.53-.01a1.342 1.342 0 01-.35-.04.492.492 0 01-.01-.96 1.343 1.343 0 01.35-.04q1.26-.015 2.52 0a1.296 1.296 0 01.44.05.514.514 0 01.33.72 3.136 3.136 0 01-.47.73c-.62.78-1.23 1.56-1.85 2.35-.05.06-.1.12-.18.22.72 0 1.39 0 2.05.01.38 0 .58.16.61.45.05.38-.17.62-.58.63zm4.55-.52a.561.561 0 01-.39.54.579.579 0 01-.66-.19c-.08-.1-.11-.11-.22-.02a1.469 1.469 0 01-1.44.24 1.863 1.863 0 01-1.28-1.73 1.963 1.963 0 01.96-2.06 1.5 1.5 0 011.88.17.75.75 0 01.42-.32.585.585 0 01.73.54c.01.95.01 1.89 0 2.83zm1.7-.04a.607.607 0 01-.76.6.617.617 0 01-.42-.61V9.74a.567.567 0 01.58-.6.56.56 0 01.6.61c.01.74.01 1.47.01 2.21 0 .73 0 1.47-.01 2.2zm2.6.69a1.925 1.925 0 01-2.18-1.95 2.008 2.008 0 114.01-.2 1.975 1.975 0 01-1.83 2.15zm-.13-3.01c-.51-.03-.86.36-.86.95a.993.993 0 00.2.66.776.776 0 001.22.01 1.16 1.16 0 000-1.32.692.692 0 00-.56-.3zm-6.12 0c-.51-.03-.87.37-.87 1.04a1.092 1.092 0 00.2.57.773.773 0 001.24-.01 1.162 1.162 0 00-.01-1.3.692.692 0 00-.56-.3zm.56.3a.692.692 0 00-.56-.3c-.51-.03-.87.37-.87 1.04a1.092 1.092 0 00.2.57.773.773 0 001.24-.01 1.162 1.162 0 00-.01-1.3zm0 0a.692.692 0 00-.56-.3c-.51-.03-.87.37-.87 1.04a1.092 1.092 0 00.2.57.773.773 0 001.24-.01 1.162 1.162 0 00-.01-1.3z" fill="currentColor"></path></svg>
+            </div>
+            <div class="ring-button__text">
+                Zalo        </div>
+        </div>
+    </a>
+</div>
+
+
+
+<!-- Contact Modal (popup) -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background:var(--primary);color:#fff;">
+                <h5 class="modal-title">Liên hệ ngay</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" name="phone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nội dung</label>
+                        <textarea class="form-control" name="message" rows="3"></textarea>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn" style="background:var(--primary);color:#fff" type="submit">Gửi</button>
+                    </div>
+                </form>
+                <div id="contactMsg" class="mt-3 text-center small" style="display:none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery + Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Smooth reveal on scroll - add 'in-view' to .fade-in when visible
+    (function ($) {
+        function revealOnScroll() {
+            $('.fade-in').each(function () {
+                var $el = $(this);
+                if ($el.hasClass('in-view')) return;
+                var top = $el.offset().top;
+                var bottom = top + $el.outerHeight();
+                var winTop = $(window).scrollTop();
+                var winBottom = winTop + $(window).height();
+                if (winBottom > top + 60) {
+                    setTimeout(function () {
+                        $el.addClass('in-view');
+                    }, 80);
+                }
+            });
+        }
+
+        $(window).on('scroll load resize', revealOnScroll);
+        revealOnScroll();
+
+        // Contact modal open
+        $('#openContact').on('click', function () {
+            $('#contactModal').modal('show');
+        });
+
+        // Fake submit handler (replace with AJAX to backend)
+        $('#contactForm').on('submit', function (e) {
+            e.preventDefault();
+            var $btn = $(this).find('button[type="submit"]');
+            $btn.prop('disabled', true).text('Đang gửi...');
+            // Simulate server delay
+            setTimeout(function () {
+                $('#contactMsg').text('Cảm ơn bạn! Yêu cầu đã được gửi. Chúng tôi sẽ liên hệ lại sớm.').css('color', 'green').fadeIn();
+                $btn.prop('disabled', false).text('Gửi');
+                $('#contactForm')[0].reset();
+            }, 900);
+        });
+
+        // Smooth anchor scroll
+        $('a[href^="#"]').on('click', function (e) {
+            var target = $(this).attr('href');
+            if (target.length > 1) {
+                e.preventDefault();
+                var top = $(target).offset().top - 70;
+                $('html,body').animate({scrollTop: top}, 600);
+            }
+        });
+
+        // Improve carousel transition (add fade)
+        $('#heroCarousel .carousel-item').addClass('carousel-fade');
+        $('.carousel .carousel-item').css({'transition': 'transform .9s cubic-bezier(.2,.9,.2,1), opacity .9s ease-in-out'});
+
+        const btn = $('#backToTop');
+
+        // Hiện nút khi scroll xuống 200px
+        $(window).scroll(function(){
+            if ($(window).scrollTop() > 200) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        // Cuộn mượt lên đầu trang
+        btn.on('click', function(e){
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 600, 'swing');
+        });
+
+        $('.thumb').click(function(){
+            const newSrc = $(this).attr('src');
+            const parent = $(this).closest('.col-md-6');
+            const mainImg = parent.find('.main-img');
+
+            // hiệu ứng fade
+            mainImg.addClass('fade-out');
+            setTimeout(() => {
+                mainImg.attr('src', newSrc);
+                mainImg.removeClass('fade-out').addClass('fade-in');
+            }, 200);
+            setTimeout(() => {
+                mainImg.removeClass('fade-in');
+            }, 400);
+
+            parent.find('.thumb').removeClass('active');
+            $(this).addClass('active');
+        });
+
+    })(jQuery);
+</script>
+</body>
+</html>
